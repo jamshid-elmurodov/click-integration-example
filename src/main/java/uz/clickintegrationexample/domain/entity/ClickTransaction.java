@@ -38,4 +38,12 @@ public class ClickTransaction {
     private String errorNote;
 
     private OrderStatus status;
+
+    public boolean isComplete() {
+        return status == OrderStatus.COMPLETE;
+    }
+
+    public boolean isCancel() {
+        return status == OrderStatus.CANCEL;
+    }
 }

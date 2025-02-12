@@ -43,7 +43,7 @@ public class ClickController {
 
     @ExceptionHandler(ClickException.class)
     public ClickCompleteResponse handleException(ClickException e) {
-        System.out.println(e.getCode() + "        " + e.getCode().getErrorNote());
+        log.error("Error occurred: {}", e.getCode().getErrorNote());
 
         return ClickCompleteResponse.builder()
                 .error(e.getCode().getCode())

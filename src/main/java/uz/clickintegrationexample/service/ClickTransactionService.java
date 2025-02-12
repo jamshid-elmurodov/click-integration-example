@@ -30,11 +30,11 @@ public class ClickTransactionService {
 
         Order order = getOrderOrThrowExc(request.getMerchantTransId());
 
-        if (Objects.equals(order.getStatus(), OrderStatus.COMPLETE)){
+        if (order.isComplete()){
             throw new ClickException(ClickResponseCode.ALREADY_PAID);
         }
 
-        if (Objects.equals(order.getStatus(), OrderStatus.CANCEL)){
+        if (order.isCancel()){
             throw new ClickException(ClickResponseCode.TRANSACTION_CANCELLED);
         }
 
@@ -61,11 +61,11 @@ public class ClickTransactionService {
         ClickTransaction clickTransaction = getTransactionOrThrowExc(request.getMerchantTransId());
         Order order = getOrderOrThrowExc(String.valueOf(clickTransaction.getOrderId()));
 
-        if (Objects.equals(clickTransaction.getStatus(), OrderStatus.COMPLETE)){
+        if (clickTransaction.isComplete()){
             throw new ClickException(ClickResponseCode.ALREADY_PAID);
         }
 
-        if (Objects.equals(clickTransaction.getStatus(), OrderStatus.CANCEL)){
+        if (clickTransaction.isCancel()){
             throw new ClickException(ClickResponseCode.TRANSACTION_CANCELLED);
         }
 
