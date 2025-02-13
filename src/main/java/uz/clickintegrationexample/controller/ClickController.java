@@ -18,22 +18,68 @@ import uz.clickintegrationexample.service.ClickTransactionService;
 public class ClickController {
     private final ClickTransactionService clickTransactionService;
 
-    @PostMapping("/prepare")
-    public ClickPrepareResponse prepare(@RequestBody ClickPrepareRequest request) {
+    @PostMapping(value = "/prepare", consumes = "application/x-www-form-urlencoded")
+    public ClickPrepareResponse prepare(
+            @RequestParam("click_trans_id") Long clickTransId,
+            @RequestParam("service_id") Integer serviceId,
+            @RequestParam("merchant_trans_id") String merchantTransId,
+            @RequestParam("amount") Float amount,
+            @RequestParam("action") Integer action,
+            @RequestParam("error") Integer error,
+            @RequestParam("error_note") String errorNote,
+            @RequestParam("sign_time") String signTime,
+            @RequestParam("sign_string") String signString
+    ) {
         log.info("Prepare request");
 
-        ClickUtil.authorizeSignString(request);
+        ClickPrepareRequest build = ClickPrepareRequest.builder()
+                .clickTransId(clickTransId)
+                .serviceId(serviceId)
+                .merchantTransId(merchantTransId)
+                .amount(amount)
+                .action(action)
+                .error(error)
+                .errorNote(errorNote)
+                .signTime(ClickUtil.parseSignTime(signTime))
+                .signString(signString)
+                .build();
 
-        return clickTransactionService.prepare(request);
+        ClickUtil.authorizeSignString(build);
+
+        return clickTransactionService.prepare(build);
     }
 
-    @PostMapping("/complete")
-    public ClickCompleteResponse complete(@RequestBody ClickCompleteRequest request) {
+    @PostMapping(value = "/complete", consumes = "application/x-www-form-urlencoded")
+    public ClickCompleteResponse complete(
+            @RequestParam("click_trans_id") Long clickTransId,
+            @RequestParam("service_id") Integer serviceId,
+            @RequestParam("merchant_trans_id") String merchantTransId,
+            @RequestParam(value = "merchant_prepare_id", required = false) Integer merchantPrepareId,
+            @RequestParam("amount") Float amount,
+            @RequestParam("action") Integer action,
+            @RequestParam("error") Integer error,
+            @RequestParam("error_note") String errorNote,
+            @RequestParam("sign_time") String signTime,
+            @RequestParam("sign_string") String signString
+    ) {
         log.info("Complete request");
 
-        ClickUtil.authorizeSignString(request);
+        ClickCompleteRequest build = ClickCompleteRequest.builder()
+                .clickTransId(clickTransId)
+                .serviceId(serviceId)
+                .merchantTransId(merchantTransId)
+                .merchantPrepareId(merchantPrepareId)
+                .amount(amount)
+                .action(action)
+                .error(error)
+                .errorNote(errorNote)
+                .signTime(ClickUtil.parseSignTime(signTime))
+                .signString(signString)
+                .build();
 
-        return clickTransactionService.complete(request);
+        ClickUtil.authorizeSignString(build);
+
+        return clickTransactionService.complete(build);
     }
 
     @GetMapping

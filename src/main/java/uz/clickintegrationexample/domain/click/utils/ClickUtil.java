@@ -8,6 +8,8 @@ import uz.clickintegrationexample.domain.click.exception.ClickException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ClickUtil {
     public static final Integer PREPARE_ACTION = 0;
@@ -83,5 +85,9 @@ public class ClickUtil {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static LocalDateTime parseSignTime(String signTime) {
+        return LocalDateTime.parse(signTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 }

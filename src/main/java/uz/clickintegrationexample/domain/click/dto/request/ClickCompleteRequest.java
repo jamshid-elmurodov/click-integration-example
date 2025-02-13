@@ -1,11 +1,9 @@
 package uz.clickintegrationexample.domain.click.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
@@ -14,7 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+@Builder
 public class ClickCompleteRequest {
     @JsonProperty("click_trans_id")
     private Long clickTransId;
@@ -38,7 +36,6 @@ public class ClickCompleteRequest {
     private String errorNote;
 
     @JsonProperty("sign_time")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime signTime;
 
     @JsonProperty("sign_string")

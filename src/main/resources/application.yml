@@ -2,9 +2,9 @@ spring:
   application:
     name: payme-integration-example
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/sahiylik
+    username: postgres
+    password: bilmayman
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
