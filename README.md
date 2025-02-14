@@ -1,6 +1,11 @@
 # Click.uz SHOP-API Integration in Java  
 
-This project provides a Java-based integration with [Click.uz SHOP-API](https://click.uz), enabling seamless payment processing through Click.uz. It implements API endpoints for transaction initialization, validation, and confirmation, following Click.uz's official documentation.  
+This project provides a Java-based integration with [Click.uz SHOP-API](https://docs.click.uz/en/click-api/), enabling seamless payment processing through Click.uz. It implements API endpoints for transaction initialization, validation, and confirmation, following Click.uz's official documentation.  
+
+## ⭐ Show Some Love!  
+If you find this project useful, **don't forget to give it a star!** ⭐  
+
+![Star this repo](https://media.giphy.com/media/3o7abldj0b3rxrZUxW/giphy.gif)  
 
 ## Features  
 - **Transaction Initialization** – Create and manage payment requests.  
