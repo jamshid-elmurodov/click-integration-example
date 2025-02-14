@@ -15,7 +15,7 @@ public class ClickCompleteResponse {
     private Long clickTransId;
 
     @JsonProperty("merchant_trans_id")
-    private String merchantTransId;
+    private Long merchantTransId;
 
     @JsonProperty("merchant_confirm_id")
     private Integer merchantConfirmId;
