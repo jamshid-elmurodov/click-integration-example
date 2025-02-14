@@ -5,7 +5,7 @@ This project provides a Java-based integration with [Click.uz SHOP-API](https://
 ## ⭐ Show Some Love!  
 If you find this project useful, **don't forget to give it a star!** ⭐  
 
-![Star this repo](https://media.giphy.com/media/3o7abldj0b3rxrZUxW/giphy.gif)  
+![Star this repo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGF0b2docDA1aXRuMm5rNzYxZHg0YzZuaGM0OWYzZTNqbmEzN2NobiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/MDJ9IbxxvDUQM/giphy.gif)  
 
 ## Features  
 - **Transaction Initialization** – Create and manage payment requests.  
