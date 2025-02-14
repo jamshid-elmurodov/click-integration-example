@@ -58,8 +58,8 @@ public class ClickTransactionService {
             throw new ClickException(ClickResponseCode.ACTION_NOT_FOUND);
         }
 
-        ClickTransaction clickTransaction = getTransactionOrThrowExc(request.getMerchantTransId());
-        Order order = getOrderOrThrowExc(String.valueOf(clickTransaction.getOrderId()));
+        ClickTransaction clickTransaction = getTransactionOrThrowExc(request.getMerchantPrepareId());
+        Order order = getOrderOrThrowExc(clickTransaction.getOrderId());
 
         if (clickTransaction.isComplete()){
             throw new ClickException(ClickResponseCode.ALREADY_PAID);
@@ -85,13 +85,13 @@ public class ClickTransactionService {
         return ClickCompleteResponse.from(request);
     }
 
-    private ClickTransaction getTransactionOrThrowExc(String merchantTransId) {
-        return clickTransactionRepository.findById(Long.valueOf(merchantTransId))
+    private ClickTransaction getTransactionOrThrowExc(Long transactionId) {
+        return clickTransactionRepository.findById(transactionId)
                 .orElseThrow(() -> new ClickException(ClickResponseCode.TRANSACTION_NOT_FOUND));
     }
 
-    private Order getOrderOrThrowExc(String merchantTransId) {
-        Order order = orderService.findById(Long.valueOf(merchantTransId));
+    private Order getOrderOrThrowExc(Long orderId) {
+        Order order = orderService.findById(orderId);
 
         if (Objects.isNull(order)) {
             throw new ClickException(ClickResponseCode.ORDER_NOT_FOUND);

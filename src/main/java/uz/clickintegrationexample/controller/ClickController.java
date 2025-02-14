@@ -22,7 +22,7 @@ public class ClickController {
     public ClickPrepareResponse prepare(
             @RequestParam("click_trans_id") Long clickTransId,
             @RequestParam("service_id") Integer serviceId,
-            @RequestParam("merchant_trans_id") String merchantTransId,
+            @RequestParam("merchant_trans_id") Long merchantTransId,
             @RequestParam("amount") Float amount,
             @RequestParam("action") Integer action,
             @RequestParam("error") Integer error,
@@ -53,8 +53,8 @@ public class ClickController {
     public ClickCompleteResponse complete(
             @RequestParam("click_trans_id") Long clickTransId,
             @RequestParam("service_id") Integer serviceId,
-            @RequestParam("merchant_trans_id") String merchantTransId,
-            @RequestParam(value = "merchant_prepare_id", required = false) Integer merchantPrepareId,
+            @RequestParam("merchant_trans_id") Long merchantTransId,
+            @RequestParam(value = "merchant_prepare_id") Long merchantPrepareId,
             @RequestParam("amount") Float amount,
             @RequestParam("action") Integer action,
             @RequestParam("error") Integer error,

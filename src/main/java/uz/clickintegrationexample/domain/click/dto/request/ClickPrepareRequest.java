@@ -14,7 +14,7 @@ public class ClickPrepareRequest {
 
     private Integer serviceId;
 
-    private String merchantTransId;
+    private Long merchantTransId;
 
     private Float amount;
 
